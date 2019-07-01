@@ -19,7 +19,7 @@ public class Controller {
     private List<Identity> identityList = new ArrayList<>();
 
     public Controller() {
-//        SampleResume();
+        SampleResume();
         AddPeopleResume();
         ChangeIdentity();
     }
@@ -40,10 +40,10 @@ public class Controller {
 
         Education education1 = new Education("Bachelor", "Psychology", "Borwn University", "2016-2028");
         Experience experience1 = new Experience("Domino Pizza", "Calm down Therapist", "06/06/2011", "There are a lot of angry people, this job is to calm them down");
-        Skill skill1 = new Skill("Calm people down", "Master");
+        Skill skill1 = new Skill("Calm people down", 2);
         Education education2 = new Education("Associate", "Math", "University BLVD", "2016-2021");
         Experience experience2 = new Experience("Pizza Hut", "Algorithm Inventor", "09/11/2015", "Create algorithm for software engineers");
-        Skill skill2 = new Skill("Matlab", "Advanced");
+        Skill skill2 = new Skill("Matlab", 3);
 
         System.out.println("\t\t\t\tBELOW IS A SAMPLE RESUME");
         educationList.add(education1);
@@ -71,7 +71,7 @@ public class Controller {
 
     private String AddID() {
         String idUserInput;
-        System.out.println(ENTER_PROMPT + "ID(You can enter anything for Recruiter to find you easily. For example: C92)");
+        System.out.println(ENTER_PROMPT + "ID(You can enter anything(Recruiters will use this ID to find your resume). For example: C92)");
         idUserInput = new Scanner(System.in).nextLine();
         return idUserInput;
     }
@@ -148,14 +148,15 @@ public class Controller {
     private List<Skill> AddSkills() {
         String askMoreSkills;
         String skillNameUserInput;
-        String competencyProficiencyUserInput;
+        int competencyProficiencyUserInput;
         List<Skill> skillList = new ArrayList<>();
 
         do {
             System.out.println(ENTER_PROMPT + "skills:");
             skillNameUserInput = new Scanner(System.in).nextLine();
             System.out.println(ENTER_PROMPT + "competency proficiency:");
-            competencyProficiencyUserInput = new Scanner(System.in).nextLine();
+            System.out.println("1 = Fundamental, 2 = Novice, 3 = Intermediate, 4 = Advanced, 5 = Expert, or any other numbers will be set to Fundamental");
+            competencyProficiencyUserInput = new Scanner(System.in).nextInt();
 
             skillList.add(new Skill(skillNameUserInput, competencyProficiencyUserInput));
             System.out.println(ASKING_PROMPT + "add more skills?" + ASKING_TO_QUIT_PROMPT);
@@ -195,7 +196,7 @@ public class Controller {
         System.out.println(this.identityList.get(indexToChange));
         System.out.println("What do you want to change? Name? Email? Or Phone Number?");
         answer = new Scanner(System.in).nextLine();
-        switch (answer.trim().toLowerCase()) {
+        switch (answer.toLowerCase()) {
             case "name":
                 System.out.println(ENTER_PROMPT + "new name");
                 userInputToChange = new Scanner(System.in).nextLine();
@@ -206,12 +207,12 @@ public class Controller {
                 userInputToChange = new Scanner(System.in).nextLine();
                 this.identityList.get(indexToChange).setEmail(userInputToChange);
                 break;
-            case "phonenumber":
-            case "phonenumbers":
+            case "phone number":
+            case "phone numbers":
             case "phone":
-            case "mobilephone":
+            case "mobile phone":
             case "telephone":
-            case "cellphone":
+            case "cell phone":
                 System.out.println(ENTER_PROMPT + "new phone number");
                 userInputToChange = new Scanner(System.in).nextLine();
                 this.identityList.get(indexToChange).setPhoneNumbers(userInputToChange);
