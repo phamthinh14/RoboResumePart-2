@@ -20,8 +20,8 @@ public class Controller {
 
     public Controller() {
         SampleResume();
-        AddPeopleResume();
-        ChangeIdentity();
+//        AddPeopleResume();
+//        ChangeIdentity();
     }
 
     public List<Identity> getIdentityList() {
