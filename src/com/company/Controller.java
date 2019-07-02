@@ -12,7 +12,7 @@ public class Controller {
     private List<String> uniqueIDList = new ArrayList<>();
 
     public Controller() {
-        SampleResume();
+//        SampleResume();
     }
 
     public List<Identity> getIdentityList() {
@@ -23,30 +23,30 @@ public class Controller {
         this.identityList = identityList;
     }
 
-    private void SampleResume() {
-        List<Identity> identityList = new ArrayList<>();
-        List<Education> educationList = new ArrayList<>();
-        List<Experience> experienceList = new ArrayList<>();
-        List<Skill> skillList = new ArrayList<>();
-
-        Education education1 = new Education("Bachelor", "Psychology", "Borwn University", "2016-2028");
-        Experience experience1 = new Experience("Domino Pizza", "Calm down Therapist", "06/06/2011", "There are a lot of angry people, this job is to calm them down");
-        Skill skill1 = new Skill("Calm people down", 2);
-        Education education2 = new Education("Associate", "Math", "University BLVD", "2016-2021");
-        Experience experience2 = new Experience("Pizza Hut", "Algorithm Inventor", "09/11/2015", "Create algorithm for software engineers");
-        Skill skill2 = new Skill("Matlab", 3);
-
-        System.out.println("\t\t\t\tBELOW IS A SAMPLE RESUME");
-        educationList.add(education1);
-        educationList.add(education2);
-        experienceList.add(experience1);
-        experienceList.add(experience2);
-        skillList.add(skill1);
-        skillList.add(skill2);
-//        String name, String email, String phoneNumbers, List<Education> educationList, List<Experience> experienceList, List<Skill> skillList
-        identityList.add(new Identity("John Doe", "Doe11@gmail.com", "2407022014", educationList, experienceList, skillList));
-        identityList.stream().forEach(System.out::println);
-    }
+//    private void SampleResume() {
+//        List<Identity> identityList = new ArrayList<>();
+//        List<Education> educationList = new ArrayList<>();
+//        List<Experience> experienceList = new ArrayList<>();
+//        List<Skill> skillList = new ArrayList<>();
+//
+//        Education education1 = new Education("Bachelor", "Psychology", "Borwn University", "2016-2028");
+//        Experience experience1 = new Experience("Domino Pizza", "Calm down Therapist", "06/06/2011", "There are a lot of angry people, this job is to calm them down");
+//        Skill skill1 = new Skill("Calm people down", 2);
+//        Education education2 = new Education("Associate", "Math", "University BLVD", "2016-2021");
+//        Experience experience2 = new Experience("Pizza Hut", "Algorithm Inventor", "09/11/2015", "Create algorithm for software engineers");
+//        Skill skill2 = new Skill("Matlab", 3);
+//
+//        System.out.println("\t\t\t\tBELOW IS A SAMPLE RESUME");
+//        educationList.add(education1);
+//        educationList.add(education2);
+//        experienceList.add(experience1);
+//        experienceList.add(experience2);
+//        skillList.add(skill1);
+//        skillList.add(skill2);
+////        String name, String email, String phoneNumbers, List<Education> educationList, List<Experience> experienceList, List<Skill> skillList
+//        identityList.add(new Identity("John Doe", "Doe11@gmail.com", "2407022014", educationList, experienceList, skillList));
+//        identityList.stream().forEach(System.out::println);
+//    }
 
     public void AddPeopleResume() {
         String answer;
@@ -138,11 +138,13 @@ public class Controller {
 
     private List<Experience> AddExperience() {
         String askMoreExperience;
+        String askMoreDescription;
         String companyNameUserInput;
         String titleUserInput;
         String dateUserInput;
         String descriptionUserInput;
         List<Experience> experienceList = new ArrayList<>();
+        List<String> descriptionList = new ArrayList<>();
         do {
             System.out.println(ENTER_PROMPT + "company name:");
             companyNameUserInput = new Scanner(System.in).nextLine();
@@ -150,10 +152,17 @@ public class Controller {
             titleUserInput = new Scanner(System.in).nextLine();
             System.out.println(ENTER_PROMPT + "starting and end date of work");
             dateUserInput = new Scanner(System.in).nextLine();
-            System.out.println(ENTER_PROMPT + "job description:");
-            descriptionUserInput = new Scanner(System.in).nextLine();
 
-            experienceList.add(new Experience(companyNameUserInput, titleUserInput, dateUserInput, descriptionUserInput));
+            do {
+                System.out.println(ENTER_PROMPT + "job description:");
+                descriptionUserInput = new Scanner(System.in).nextLine();
+                descriptionList.add(descriptionUserInput);
+                System.out.println(ASKING_PROMPT + "add more description?" + ASKING_TO_QUIT_PROMPT);
+                askMoreDescription = new Scanner(System.in).nextLine();
+            } while (!askMoreDescription.equalsIgnoreCase("q"));
+
+
+            experienceList.add(new Experience(companyNameUserInput, titleUserInput, dateUserInput, descriptionList));
             System.out.println(ASKING_PROMPT + "add more experience?" + ASKING_TO_QUIT_PROMPT);
             askMoreExperience = new Scanner(System.in).nextLine();
         } while (!askMoreExperience.equalsIgnoreCase("q"));
