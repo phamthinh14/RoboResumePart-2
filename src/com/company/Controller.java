@@ -9,19 +9,10 @@ public class Controller {
     private final String ASKING_PROMPT = "Do you want to ";
     private final String ASKING_TO_QUIT_PROMPT = " If yes press any key, press q to quit";
     private final String EMPTY_LIST_NOTICE = "The list is empty";
-
-    //    private String name;
-//    private String email;
-//    private String phoneNumbers;
-//    private List<Education> educationList = new ArrayList<>();
-//    private List<Experience> experienceList = new ArrayList<>();
-//    private List<Skill> skillList = new ArrayList<>();
     private List<Identity> identityList = new ArrayList<>();
 
     public Controller() {
         SampleResume();
-//        AddPeopleResume();
-//        ChangeIdentity();
     }
 
     public List<Identity> getIdentityList() {
@@ -54,10 +45,7 @@ public class Controller {
         skillList.add(skill2);
 //        String name, String email, String phoneNumbers, List<Education> educationList, List<Experience> experienceList, List<Skill> skillList
         identityList.add(new Identity("John Doe", "Doe11@gmail.com", "2407022014", educationList, experienceList, skillList));
-//        identityList.add();
-        for (int i = 0; i < identityList.size(); i++) {
-            System.out.println(identityList.get(i));
-        }
+        identityList.stream().forEach(System.out::println);
     }
 
     public void AddPeopleResume() {

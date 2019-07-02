@@ -13,14 +13,15 @@ public class Recruiter {
 
 
     public Recruiter() {
-        DisplayMenu();
+
+        System.out.println("\t\t\t\tWELCOME\n");
+//        DisplayMenu();
         MenuSelect();
     }
 
-    public void DisplayMenu() {
+    private void DisplayMenu() {
         StringBuilder menu = new StringBuilder();
-        menu.append("\t\t\t\tWELCOME\n")
-                .append("Press 1 to add resume\n")
+        menu.append("Press 1 to add resume\n")
                 .append("Press 2 to display all the resumes\n")
                 .append("Press 3 to find people with a specific skill\n");
         System.out.println(menu);
@@ -29,8 +30,10 @@ public class Recruiter {
     public void MenuSelect() {
         String answer;
         int option;
-        option = new Scanner(System.in).nextInt();
+
         do {
+            DisplayMenu();
+            option = new Scanner(System.in).nextInt();
             switch (option) {
                 case 1:
                     this.controller.AddPeopleResume();
@@ -46,7 +49,7 @@ public class Recruiter {
 
             }
 
-            System.out.println(ASKING_PROMPT + "to choose another option?" + ASKING_TO_QUIT_PROMPT);
+            System.out.println(ASKING_PROMPT + "choose another option?" + ASKING_TO_QUIT_PROMPT);
             answer = new Scanner(System.in).nextLine();
         } while (!answer.equalsIgnoreCase("q"));
 
@@ -70,9 +73,12 @@ public class Recruiter {
             System.out.println("What skill do you want to find?");
             skillWanted = new Scanner(System.in).nextLine();
             for (int i = 0; i < this.controller.getIdentityList().size(); i++) {
-                if (this.controller.getIdentityList().get(i).getSkillList().get(i).getSkillName().equalsIgnoreCase(skillWanted)) {
-                    this.foundPeopleList.add(this.controller.getIdentityList().get(i));
+                for (int j = 0; j < this.controller.getIdentityList().get(i).getSkillList().size(); j++) {
+                    if (this.controller.getIdentityList().get(i).getSkillList().get(j).getSkillName().equalsIgnoreCase(skillWanted)) {
+                        this.foundPeopleList.add(this.controller.getIdentityList().get(i));
+                    }
                 }
+
             }
             if (this.foundPeopleList.isEmpty()) {
                 System.out.println("We cannot find the people with the skill " + skillWanted + " like you specified");
