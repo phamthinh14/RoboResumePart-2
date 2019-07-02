@@ -1,8 +1,7 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.regex.Pattern;
 
 public class Controller {
     private final String ENTER_PROMPT = "Please enter your ";
@@ -10,6 +9,7 @@ public class Controller {
     private final String ASKING_TO_QUIT_PROMPT = " If yes press any key, press q to quit";
     private final String EMPTY_LIST_NOTICE = "The list is empty";
     private List<Identity> identityList = new ArrayList<>();
+    private List<String> uniqueIDList = new ArrayList<>();
 
     public Controller() {
         SampleResume();
@@ -59,8 +59,34 @@ public class Controller {
 
     private String AddID() {
         String idUserInput;
+        boolean isDuplicate = false;
+
         System.out.println(ENTER_PROMPT + "ID(You can enter anything(Recruiters will use this ID to find your resume). For example: C92)");
         idUserInput = new Scanner(System.in).nextLine();
+        this.uniqueIDList.add(idUserInput);
+        if (this.uniqueIDList.size() == 1) {
+            System.out.println("Your ID has been created");
+        }
+        if (this.uniqueIDList.size() > 1) {
+            while (!isDuplicate) {
+                for (int i = 0; i < this.uniqueIDList.size() - 1; i++) {
+                    if (this.uniqueIDList.get(i).equalsIgnoreCase(idUserInput)) {
+                        isDuplicate = true;
+                    }
+                }
+            }
+            while (isDuplicate) {
+                System.out.println("You ID is duplicated. Please type in again");
+                idUserInput = new Scanner(System.in).nextLine();
+                this.uniqueIDList.add(idUserInput);
+                for (int i = 0; i < this.uniqueIDList.size() - 1; i++) {
+                    if (!this.uniqueIDList.get(i).equalsIgnoreCase(idUserInput)) {
+                        isDuplicate = false;
+                    }
+                }
+                System.out.println("Your ID has been created");
+            }
+        }
         return idUserInput;
     }
 
@@ -68,6 +94,7 @@ public class Controller {
         String nameUserInput;
         System.out.println(ENTER_PROMPT + "name:");
         nameUserInput = new Scanner(System.in).nextLine();
+
         return nameUserInput;
     }
 
@@ -136,16 +163,20 @@ public class Controller {
     private List<Skill> AddSkills() {
         String askMoreSkills;
         String skillNameUserInput;
-        int competencyProficiencyUserInput;
+        Integer competencyProficiencyUserInput = 0;
         List<Skill> skillList = new ArrayList<>();
 
         do {
             System.out.println(ENTER_PROMPT + "skills:");
             skillNameUserInput = new Scanner(System.in).nextLine();
             System.out.println(ENTER_PROMPT + "competency proficiency:");
-            System.out.println("1 = Fundamental, 2 = Novice, 3 = Intermediate, 4 = Advanced, 5 = Expert, or any other numbers will be set to Fundamental");
-            competencyProficiencyUserInput = new Scanner(System.in).nextInt();
-
+            System.out.println("1 = Fundamental, 2 = Novice, 3 = Intermediate, 4 = Advanced, 5 = Expert," +
+                    " or any other than that competency proficiency will be set to Fundamental");
+            try {
+                competencyProficiencyUserInput = new Scanner(System.in).nextInt();
+            } catch (Exception e) {
+                System.out.println("You cannot type in characters. Your skill will be set to Fundamental");
+            }
             skillList.add(new Skill(skillNameUserInput, competencyProficiencyUserInput));
             System.out.println(ASKING_PROMPT + "add more skills?" + ASKING_TO_QUIT_PROMPT);
             askMoreSkills = new Scanner(System.in).nextLine();

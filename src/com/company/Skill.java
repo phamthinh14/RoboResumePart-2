@@ -5,10 +5,10 @@ public class Skill {
     private String competencyProficiency;
     private int level;
 
-    public Skill(String skillName, String competencyProficiency) {
-        this.skillName = skillName;
-        this.competencyProficiency = competencyProficiency;
-    }
+//    public Skill(String skillName, String competencyProficiency) {
+//        this.skillName = skillName;
+//        this.competencyProficiency = competencyProficiency;
+//    }
 
     public Skill(String skillName, int level) {
         this.skillName = skillName;

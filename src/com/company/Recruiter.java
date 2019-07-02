@@ -21,19 +21,25 @@ public class Recruiter {
 
     private void DisplayMenu() {
         StringBuilder menu = new StringBuilder();
-        menu.append("Press 1 to add resume\n")
-                .append("Press 2 to display all the resumes\n")
-                .append("Press 3 to find people with a specific skill\n");
+        menu.append("1/ Press 1 to add resume\n")
+                .append("2/ Press 2 to display all the resumes\n")
+                .append("3/ Press 3 to find people with a specific skill\n")
+                .append("4/ Press 4 to change Name/Email/Phone Number\n")
+                .append("Rules: If you type in characters. We will assume that you want to add a resume.");
         System.out.println(menu);
     }
 
     public void MenuSelect() {
         String answer;
-        int option;
+        int option = 1;
 
         do {
             DisplayMenu();
-            option = new Scanner(System.in).nextInt();
+            try {
+                option = new Scanner(System.in).nextInt();
+            } catch (Exception e) {
+                System.out.println("You typed in character(s). Below is a form for you to input your information for your resume");
+            }
             switch (option) {
                 case 1:
                     this.controller.AddPeopleResume();
@@ -44,11 +50,12 @@ public class Recruiter {
                 case 3:
                     DisplayAllNameWithSpecificSkill();
                     break;
+                case 4:
+                    this.controller.ChangeIdentity();
+                    break;
                 default:
-                    System.out.println("Invalid options");
-
+                    System.out.println("INVALID OPTION");
             }
-
             System.out.println(ASKING_PROMPT + "choose another option?" + ASKING_TO_QUIT_PROMPT);
             answer = new Scanner(System.in).nextLine();
         } while (!answer.equalsIgnoreCase("q"));
@@ -90,8 +97,6 @@ public class Recruiter {
     }
 
     private void PeopleFoundBySkillName() {
-        for (int i = 0; i < this.foundPeopleList.size(); i++) {
-            System.out.println(this.foundPeopleList.get(i));
-        }
+        this.foundPeopleList.forEach(System.out::println);
     }
 }
