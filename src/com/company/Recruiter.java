@@ -17,6 +17,7 @@ public class Recruiter {
         System.out.println("\t\t\t\tWELCOME\n");
 //        DisplayMenu();
         MenuSelect();
+//        this.controller.SampleResume();
     }
 
     private void DisplayMenu() {
@@ -73,6 +74,7 @@ public class Recruiter {
 
     private void DisplayAllNameWithSpecificSkill() {
         String skillWanted;
+        boolean isFound = false;
         if (this.controller.getIdentityList().isEmpty()) {
             System.out.println(EMPTY_LIST_NOTICE);
         }
@@ -82,21 +84,22 @@ public class Recruiter {
             for (int i = 0; i < this.controller.getIdentityList().size(); i++) {
                 for (int j = 0; j < this.controller.getIdentityList().get(i).getSkillList().size(); j++) {
                     if (this.controller.getIdentityList().get(i).getSkillList().get(j).getSkillName().equalsIgnoreCase(skillWanted)) {
-                        this.foundPeopleList.add(this.controller.getIdentityList().get(i));
+                        System.out.println(this.controller.getIdentityList().get(i));
+                        isFound = true;
                     }
                 }
 
             }
-            if (this.foundPeopleList.isEmpty()) {
+            if (!isFound) {
                 System.out.println("We cannot find the people with the skill " + skillWanted + " like you specified");
             }
-            if (!this.foundPeopleList.isEmpty()) {
-                PeopleFoundBySkillName();
-            }
+//            if (!this.foundPeopleList.isEmpty()) {
+//                PeopleFoundBySkillName();
+//            }
         }
     }
 
-    private void PeopleFoundBySkillName() {
-        this.foundPeopleList.forEach(System.out::println);
-    }
+//    private void PeopleFoundBySkillName() {
+//        this.foundPeopleList.forEach(System.out::println);
+//    }
 }

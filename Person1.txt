@@ -1,0 +1,30 @@
+X31
+Ted
+ted12@gmail.com
+2407651274
+Education
+Bachelor 
+Psychology
+UMD 
+1988
+End Education
+Education
+Associate
+Socy
+UMBC
+1999
+End Education
+Experience
+Nasa
+Therapist
+06/12/2016
+Description
+Calm people
+Suggest Therapy
+Doing Research
+Improve Productivity
+End Description
+End Experience
+Skill
+Team work
+3

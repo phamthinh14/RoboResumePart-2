@@ -11,34 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-//        new Recruiter();
-        String name;
-        String email;
-        String noise;
-        String content = " j";
-        List<String> stringList = new ArrayList<>();
+        new Recruiter();
 
-
-        Path path = Paths.get("Data.txt");
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Read text file using Scanner");
-//read line by line
-        while (scanner.hasNextLine()) {
-            //process each line
-            String line = scanner.nextLine();
-            stringList.add(line);
-
-        }
-        scanner.close();
-
-        System.out.println(stringList.size());
-
-        System.out.println(stringList);
 
 
     }

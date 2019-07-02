@@ -1,7 +1,8 @@
 package com.company;
 
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Controller {
     private final String ENTER_PROMPT = "Please enter your ";
@@ -12,7 +13,7 @@ public class Controller {
     private List<String> uniqueIDList = new ArrayList<>();
 
     public Controller() {
-//        SampleResume();
+        SampleResume();
     }
 
     public List<Identity> getIdentityList() {
@@ -23,30 +24,62 @@ public class Controller {
         this.identityList = identityList;
     }
 
-//    private void SampleResume() {
-//        List<Identity> identityList = new ArrayList<>();
-//        List<Education> educationList = new ArrayList<>();
-//        List<Experience> experienceList = new ArrayList<>();
-//        List<Skill> skillList = new ArrayList<>();
-//
-//        Education education1 = new Education("Bachelor", "Psychology", "Borwn University", "2016-2028");
-//        Experience experience1 = new Experience("Domino Pizza", "Calm down Therapist", "06/06/2011", "There are a lot of angry people, this job is to calm them down");
-//        Skill skill1 = new Skill("Calm people down", 2);
-//        Education education2 = new Education("Associate", "Math", "University BLVD", "2016-2021");
-//        Experience experience2 = new Experience("Pizza Hut", "Algorithm Inventor", "09/11/2015", "Create algorithm for software engineers");
-//        Skill skill2 = new Skill("Matlab", 3);
-//
-//        System.out.println("\t\t\t\tBELOW IS A SAMPLE RESUME");
-//        educationList.add(education1);
-//        educationList.add(education2);
-//        experienceList.add(experience1);
-//        experienceList.add(experience2);
-//        skillList.add(skill1);
-//        skillList.add(skill2);
-////        String name, String email, String phoneNumbers, List<Education> educationList, List<Experience> experienceList, List<Skill> skillList
-//        identityList.add(new Identity("John Doe", "Doe11@gmail.com", "2407022014", educationList, experienceList, skillList));
-//        identityList.stream().forEach(System.out::println);
-//    }
+    public void SampleResume() {
+//        Education(String degree, String major, String schoolName, String year) {
+        List<Education> educationList1 = new ArrayList<>();
+        List<Education> educationList2 = new ArrayList<>();
+        List<Education> educationList3 = new ArrayList<>();
+//        Experience(String companyName, String title, String date, List<String> descriptionList) {
+        List<Experience> experienceList1 = new ArrayList<>();
+        List<Experience> experienceList2 = new ArrayList<>();
+        List<Experience> experienceList3 = new ArrayList<>();
+        List<String> descriptionList1 = new ArrayList<>();
+        List<String> descriptionList2 = new ArrayList<>();
+
+        List<String> descriptionList2_1 = new ArrayList<>();
+        List<String> descriptionList3 = new ArrayList<>();
+//        Skill(String skillName, int level) {
+        List<Skill> skillList1 = new ArrayList<>();
+        List<Skill> skillList2 = new ArrayList<>();
+        List<Skill> skillList3 = new ArrayList<>();
+
+        educationList1.add(new Education("Bachelor", "Psychology", "MC", "1965"));
+        educationList1.add(new Education("Certificate", "English", "MC", "1975"));
+        descriptionList1.add("Treat mental problem");
+        descriptionList1.add("Doing research");
+        descriptionList1.add("Improve Productivity");
+        experienceList1.add(new Experience("Yahoo", "Therapist", "06/01/2000", descriptionList1));
+        skillList1.add(new Skill("Java", 1));
+        skillList1.add(new Skill("Python", 2));
+        skillList1.add(new Skill("SQL", 1));
+        skillList1.add(new Skill("Go", 3));
+
+        educationList2.add(new Education("Associate", "Socy", "UCLA", "1995"));
+        educationList2.add(new Education("Certificate", "CPA", "MC", "2015"));
+        descriptionList2.add("Conduct survey");
+        descriptionList2.add("Doing research");
+        descriptionList2_1.add("Help people in case of emergency");
+        descriptionList2_1.add("Work in hospital");
+        experienceList2.add(new Experience("Yahoo", "Therapist", "06/01/2000", descriptionList2));
+        experienceList2.add(new Experience("Holy Cross Hospital", "Nurse", "04/22/2010", descriptionList2_1));
+        skillList2.add(new Skill("SQL", 1));
+        skillList2.add(new Skill("Tableau", 4));
+        skillList2.add(new Skill("Go", 3));
+
+        educationList3.add(new Education("", "", "", ""));
+        descriptionList3.add("");
+        experienceList3.add(new Experience("", "", "", descriptionList3));
+        skillList3.add(new Skill("SQL", 1));
+        skillList3.add(new Skill("Tableau", 4));
+        skillList3.add(new Skill("Go", 3));
+        skillList3.add(new Skill("Java", 5));
+
+        this.identityList.add(new Identity("B56", "John Doe", "Doe11@gmail.com", "2407022014", educationList1, experienceList1, skillList1));
+        this.identityList.add(new Identity("X13", "Maria Doe", "Mari_22@hotmail.com", "3107011111", educationList2, experienceList2, skillList2));
+        this.identityList.add(new Identity("T65", "Lily", "LilyChase7@outlook.com", "7428880171", educationList3, experienceList3, skillList3));
+
+//        this.identityList.stream().forEach(System.out::println);
+    }
 
     public void AddPeopleResume() {
         String answer;
@@ -252,6 +285,5 @@ public class Controller {
         System.out.println("====================================================================\n");
         System.out.println(this.identityList.get(indexToChange));
     }
-
 
 }
