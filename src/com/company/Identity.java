@@ -108,6 +108,7 @@ public class Identity {
         result = "====================================================================\n" +
                 "IDENTITY: \n" +
                 "\n" +
+                " " + this.ID + "\n" +
                 " " + this.name + "\n" +
                 " " + this.email + "\n" +
                 " " + this.phoneNumbers + "\n" +
